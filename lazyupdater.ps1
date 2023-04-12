@@ -68,7 +68,7 @@ Get-WuInstall -AcceptAll -IgnoreReboot
 Get-WuInstall -AcceptAll -Install -IgnoreReboot
 Write-Host Successfully Updated Computer with the latest Windows Updates!
 Write-Host Forcing Group Policy Updates...
-gpupdate -Force
+gpupdate /force
 Write-Host Updating Drivers...
 choco install sdio --force -y
 choco upgrade sdio --force -y

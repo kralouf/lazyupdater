@@ -497,10 +497,20 @@ Write-Host To Run another Option, Rerun the script...
 cls
 # Creating a Log File
 Write-Host Creating a Log File
-$logfilepath="log.log"
+$logfilepath="lazyupdaterdiags.log"
 Start-Transcript -Path $logfilepath
 Write-Host Log File Created
 Write-Host Log file is located where the powershell script is stored...
+Write-Host WARNING!: The diagnostics option is still a WORK IN PROGRESS! Not all features are currently complete as of this release! -BackgroundColor Yellow
+Write-Host WARNING!: These hardware diagnostics are for INFORMATIONAL USE ONLY! This will only provide you with the necessary information and if the diagnostics here reports a failure, its recommended to use another tool to further diagnose that specific piece of hardware! -BackgroundColor Yellow
+do {
+    $inputKey = Read-Host "Press any key to continue the diagnostics or press 'Q' to quit"
+    if ($inputKey -eq "Q" -or $inputKey -eq "q") {
+        Write-Host "Cancelling Diagnostics..."
+        break
+    }
+    Write-Host "Continuing with Diagnostics..."
+} while ($true)
 Write-Host Updating Powershell...
 Install-Module -Name WingetTools -Force
 Install-WinGet

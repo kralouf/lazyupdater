@@ -15,7 +15,7 @@ $text = @"
                                     |___/        |_|                             
 "@
 Write-Host $text
-Write-Host Version 1.0.1
+Write-Host Version 1.0.1.1
 Write-Host Script Created by Louis Kraimer
 Write-Host Make sure you run this script as an Administrator else it WILL NOT WORK!!!
 Write-Host Its Recommended to Shutdown ALL Apps and its processes before running this script!!
@@ -95,7 +95,7 @@ If ((Get-Item "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore").GetValueNames() 
         Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore" -Name "AutoDownload"
     }
 Write-Host Done!
-Write-Host Successfully Updated your Computer! -BackgroundColor Green
+Write-Host Successfully Updated your Computer! -ForegroundColor Green
 Stop-Transcript
 Write-Host To Run another Option, Rerun the script...
    }
@@ -352,7 +352,7 @@ Write-Host Running Again...
 DISM.exe /Online /CleanUp-Image /RestoreHealth
 SFC.exe /ScanNow
 Write-Host Done!
-Write-Host Successfully Tuned-Up your Computer! -BackgroundColor Green
+Write-Host Successfully Tuned-Up your Computer! -ForegroundColor Green
 Stop-Transcript
 Write-Host To Run another Option, Rerun the script...
    }
@@ -479,7 +479,7 @@ $avchoice = Read-Host "Select one of The Options above..."
 switch ($avchoice) {
 '1' {
 Write-Host Successfully Added More Protection to your Computer!
-Write-Host WARNING: About to start Offline Scan, your system will shut down momentarily -BackgroundColor Yellow
+Write-Host WARNING: About to start Offline Scan, your system will shut down momentarily -ForegroundColor Green
 Stop-Transcript
 Write-Host Running Offline Scan...
 Start-MpWDOScan
@@ -487,7 +487,7 @@ Start-MpWDOScan
 '2' {
 Write-Host Cancelling Offline Scan...
 Write-Host Done!
-Write-Host Successfully Added More Protection to your Computer and Checked for Malware! -BackgroundColor Green
+Write-Host Successfully Added More Protection to your Computer and Checked for Malware! -ForegroundColor Green
 Stop-Transcript
 Write-Host To Run another Option, Rerun the script...
     }
@@ -501,13 +501,13 @@ $logfilepath="lazyupdaterdiags.log"
 Start-Transcript -Path $logfilepath
 Write-Host Log File Created
 Write-Host Log file is located where the powershell script is stored...
-Write-Host WARNING!: The diagnostics option is still a WORK IN PROGRESS! Not all features are currently complete as of this release! -BackgroundColor Yellow
-Write-Host WARNING!: These hardware diagnostics are for INFORMATIONAL USE ONLY! This will only provide you with the necessary information and if the diagnostics here reports a failure, its recommended to use another tool to further diagnose that specific piece of hardware! -BackgroundColor Yellow
+Write-Host WARNING!: The diagnostics option is still a WORK IN PROGRESS! Not all features are currently complete as of this release! -ForegroundColor Yellow
+Write-Host WARNING!: These hardware diagnostics are for INFORMATIONAL USE ONLY! This will only provide you with the necessary information and if the diagnostics here reports a failure, its recommended to use another tool to further diagnose that specific piece of hardware! -ForegroundColor Yellow
 do {
     $inputKey = Read-Host "Press any key to continue the diagnostics or press 'Q' to quit"
     if ($inputKey -eq "Q" -or $inputKey -eq "q") {
         Write-Host "Cancelling Diagnostics..."
-        break
+        return
     }
     Write-Host "Continuing with Diagnostics..."
 } while ($true)
